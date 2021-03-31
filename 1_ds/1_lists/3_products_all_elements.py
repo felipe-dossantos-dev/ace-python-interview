@@ -19,6 +19,7 @@ def find_product(lst):
         new_list.append(value)
     return new_list
 
+
 # theirs solution
 # time O(n^2)
 # space O(n)
@@ -28,7 +29,7 @@ def find_product_nested_loop(lst):
     for i in range(len(lst)):
         currentproduct = 1  # To store current product for index i
         # compute product of values to the right of i index of list
-        for ele in lst[i+1:]:
+        for ele in lst[i + 1 :]:
             currentproduct = currentproduct * ele
         # currentproduct * product of all values to the left of i index
         result.append(currentproduct * left)
@@ -36,6 +37,7 @@ def find_product_nested_loop(lst):
         left = left * lst[i]
 
     return result
+
 
 # time O(2*n) -> O(n)
 # space O(2*n) -> O(n)
@@ -48,14 +50,14 @@ def find_product_optimized(lst):
         left = left * ele
     # get product starting from right
     right = 1
-    for i in range(len(lst)-1, -1, -1):
+    for i in range(len(lst) - 1, -1, -1):
         product[i] = product[i] * right
         right = right * lst[i]
 
     return product
 
+
 if __name__ == "__main__":
     assert find_product([1, 2, 3, 4]) == [24, 12, 8, 6]
     assert find_product([4, 2, 1, 5, 0]) == [0, 0, 0, 0, 40]
     assert find_product([2, 5, 9, 3, 6]) == [810, 324, 180, 540, 270]
- 
