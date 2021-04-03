@@ -39,15 +39,24 @@ class LinkedList:
         s += repr(temp.data) + " -> None"
         return s
 
+    def search(self, value):
+        current_node = self.get_head()
+        while current_node:
+            if current_node.data == value:
+                return True
+            current_node = current_node.next_element
+        return False
 
-def search(lst, value):
-    # Write your code here
-    pass
+    def search_recursive(self, value):
+        return self.__search_recursive(self.get_head(), value)
+
+    def __search_recursive(self, node, value):
+        if not node:
+            return False
+        if node.data is value:
+            return True
+        return self.__search_recursive(node.next_element, value)
 
 
 if __name__ == "__main__":
-    lst = LinkedList()
-    lst.insert_at_tail(0)
-    lst.insert_at_tail(1)
-    lst.insert_at_tail(2)
-    lst.insert_at_tail(3)
+    assert True
