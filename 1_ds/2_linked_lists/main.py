@@ -30,7 +30,7 @@ class LinkedList:
     # Supplementary print function
     def __repr__(self):
         if self.is_empty():
-            return ""
+            return "None"
         s = ""
         temp = self.head_node
         while temp.next_element is not None:
@@ -43,20 +43,61 @@ class LinkedList:
         current_node = self.get_head()
         while current_node:
             if current_node.data == value:
-                return True
+                return current_node
             current_node = current_node.next_element
-        return False
+        return None
+
+    def length(self):
+        curr = self.get_head()
+        length = 0
+
+        while curr is not None:
+            length += 1
+            curr = curr.next_element
+        return length
+
+    def delete_at_head(self):
+        first_element = self.get_head()
+        if first_element is not None:
+            self.head_node = first_element.next_element
+            first_element.next_element = None
+        return
+
+    def delete(self, value):
+        if self.is_empty():
+            return None
+        current_node = self.get_head()
+        if current_node.data == value:
+            self.delete_at_head()
+            return current_node
+        last_node = current_node
+        while current_node:
+            if current_node.data == value:
+                last_node.next_element = current_node.next_element
+                current_node.next_element = None
+                return current_node
+            last_node = current_node
+            current_node = current_node.next_element
+        return None
+
+    def reverse(self):
+        current_node = self.get_head()
+        last_node = None
+        while current_node:
+            next_node = current_node.next_element
+
+            current_node.next_element = last_node
+
+            last_node = current_node
+            current_node = next_node
+        self.head_node = last_node
 
     def search_recursive(self, value):
         return self.__search_recursive(self.get_head(), value)
 
     def __search_recursive(self, node, value):
         if not node:
-            return False
+            return None
         if node.data is value:
-            return True
+            return node
         return self.__search_recursive(node.next_element, value)
-
-
-if __name__ == "__main__":
-    assert True
