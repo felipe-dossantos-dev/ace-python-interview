@@ -12,5 +12,5 @@ def find_minimum_sort(lst):
     return lst[0]  # return first element
 
 
-if __name__ == "__main__":
+def test_find_minimum():
     assert find_minimum([9, 2, 3, 6]) == 2

@@ -47,6 +47,6 @@ def find_max_sum_sublist(lst):
     return global_max
 
 
-if __name__ == "__main__":
+def test_find_max_sum_sublist():
     assert find_max_sum_sublist([-2, 10, 7, -5, 15, 6]) == 33
     assert find_max_sum_sublist([-4, 2, -5, 1, 2, 3, 6, -5, 1]) == 12

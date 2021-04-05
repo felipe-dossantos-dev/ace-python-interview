@@ -57,7 +57,7 @@ def find_second_maximum_one_traverse(lst):
         return second_max_no
 
 
-if __name__ == "__main__":
+def test_find_second_maximum():
     assert find_second_maximum([9, 2, 3, 6]) == 6
     assert find_second_maximum([9, 9, 8, 5, 0]) == 8
     assert find_second_maximum([4, 2, 1, 5, 0]) == 4

@@ -44,6 +44,6 @@ def right_rotate_pythonic(lst, k):
     return lst[-k:] + lst[:-k]
 
 
-if __name__ == "__main__":
+def test_right_rotate():
     assert right_rotate([10, 20, 30, 40, 50], 3) == [30, 40, 50, 10, 20]
     assert right_rotate([10, 20, 30, 40, 50], 0) == [10, 20, 30, 40, 50]

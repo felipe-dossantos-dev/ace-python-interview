@@ -36,7 +36,7 @@ def rearrange_pythonic(lst):
     return [i for i in lst if i < 0] + [i for i in lst if i >= 0]
 
 
-if __name__ == "__main__":
+def test_rearrange():
     assert rearrange([10, -1, 20, 4, 5, -9, -6]) == [-1, -9, -6, 10, 20, 4, 5]
     assert rearrange([0, 0, 0, -2]) == [-2, 0, 0, 0]
     assert rearrange([300, -1, 3, 0]) == [-1, 300, 3, 0]

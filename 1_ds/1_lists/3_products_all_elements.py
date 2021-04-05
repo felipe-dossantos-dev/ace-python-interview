@@ -57,7 +57,7 @@ def find_product_optimized(lst):
     return product
 
 
-if __name__ == "__main__":
+def test_find_product():
     assert find_product([1, 2, 3, 4]) == [24, 12, 8, 6]
     assert find_product([4, 2, 1, 5, 0]) == [0, 0, 0, 0, 40]
     assert find_product([2, 5, 9, 3, 6]) == [810, 324, 180, 540, 270]

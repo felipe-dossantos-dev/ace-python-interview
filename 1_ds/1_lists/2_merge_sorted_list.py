@@ -48,7 +48,7 @@ def merge_lists_in_place(lst1, lst2):
     return lst1
 
 
-if __name__ == "__main__":
+def test_merge_lists():
     assert merge_lists([1, 3], [6, 7]) == [1, 3, 6, 7]
     assert merge_lists([6, 7], [1, 3]) == [1, 3, 6, 7]
     assert merge_lists([1, 3, 4, 5], [2, 6, 7, 8]) == [1, 2, 3, 4, 5, 6, 7, 8]

@@ -69,6 +69,6 @@ def max_min_no_extra_space(lst):
     return lst
 
 
-if __name__ == "__main__":
+def test_max_min():
     assert max_min([1, 2, 3, 4, 5]) == [5, 1, 4, 2, 3]
     assert max_min([1, 2, 3, 4, 5, 6, 7]) == [7, 1, 6, 2, 5, 3, 4]
