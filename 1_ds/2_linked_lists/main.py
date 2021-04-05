@@ -101,3 +101,27 @@ class LinkedList:
         if node.data is value:
             return node
         return self.__search_recursive(node.next_element, value)
+
+    # time average O(n), worst case O(n^2) because set lookup can take O(n)
+    def detect_loop(self):
+        nodes_passed = set()
+        curr = self.get_head()
+        while curr is not None:
+            if curr in nodes_passed:
+                return True
+            nodes_passed.add(curr)
+            curr = curr.next_element
+        return False
+
+    # Floyd's Cycle Finding Algorithm
+    # time O(n)
+    def detect_loop_2(self):
+        # Keep two iterators
+        onestep = self.get_head()
+        twostep = self.get_head()
+        while onestep and twostep and twostep.next_element:
+            onestep = onestep.next_element  # Moves one node at a time
+            twostep = twostep.next_element.next_element  # Skips a node
+            if onestep == twostep:  # Loop exists
+                return True
+        return False

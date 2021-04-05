@@ -92,3 +92,24 @@ def test_reverse():
     lst.reverse()
 
     assert str(lst) == "None"
+
+
+def test_detected_loop():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+    node = lst.search(4)
+    other_node = lst.search(90)
+    node.next_element = other_node
+
+    assert lst.detect_loop()
+
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+
+    assert not lst.detect_loop()
