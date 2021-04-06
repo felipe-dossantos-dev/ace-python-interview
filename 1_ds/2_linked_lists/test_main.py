@@ -113,3 +113,16 @@ def test_detected_loop():
     lst.insert_at_tail(4)
 
     assert not lst.detect_loop()
+
+
+def test_find_mid():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+
+    assert lst.find_mid().data == 90
+
+    lst.insert_at_tail(0)
+    assert lst.find_mid().data == 10

@@ -47,7 +47,7 @@ def max_min_new_list(lst):
 # space O(1)
 def max_min_no_extra_space(lst):
     # Return empty list for empty list
-    if len(lst) is 0:
+    if len(lst) == 0:
         return []
 
     maxIdx = len(lst) - 1  # max index

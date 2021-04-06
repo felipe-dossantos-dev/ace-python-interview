@@ -125,3 +125,11 @@ class LinkedList:
             if onestep == twostep:  # Loop exists
                 return True
         return False
+
+    def find_mid(self):
+        leng = self.length()
+        mid = leng // 2 + leng % 2
+        curr = self.get_head()
+        for _ in range(mid - 1):
+            curr = curr.next_element
+        return curr
