@@ -126,3 +126,117 @@ def test_find_mid():
 
     lst.insert_at_tail(0)
     assert lst.find_mid().data == 10
+
+
+def test_remove_duplicates():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+    lst.remove_duplicates()
+
+    assert str(lst) == "5 -> 90 -> 10 -> 4 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(6)
+    lst.remove_duplicates()
+
+    assert str(lst) == "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(4)
+    lst.remove_duplicates()
+
+    assert str(lst) == "90 -> 10 -> 4 -> None"
+
+
+def test_union():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(1)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(3)
+    lst2.insert_at_tail(4)
+    lst2.insert_at_tail(4)
+    lst2.insert_at_tail(5)
+    lst2.insert_at_tail(6)
+
+    lst = lst.union(lst2)
+    assert str(lst) == "5 -> 90 -> 10 -> 4 -> 1 -> 2 -> 3 -> 6 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(20)
+    lst.insert_at_tail(80)
+    lst.insert_at_tail(60)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(15)
+    lst2.insert_at_tail(20)
+    lst2.insert_at_tail(30)
+    lst2.insert_at_tail(60)
+    lst2.insert_at_tail(45)
+
+    lst = lst.union(lst2)
+    assert str(lst) == "10 -> 20 -> 80 -> 60 -> 15 -> 30 -> 45 -> None"
+
+
+def test_intersection():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(1)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(3)
+    lst2.insert_at_tail(4)
+    lst2.insert_at_tail(4)
+    lst2.insert_at_tail(5)
+    lst2.insert_at_tail(6)
+
+    lst = lst.intersection(lst2)
+    assert str(lst) == "5 -> 4 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(20)
+    lst.insert_at_tail(80)
+    lst.insert_at_tail(60)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(15)
+    lst2.insert_at_tail(20)
+    lst2.insert_at_tail(30)
+    lst2.insert_at_tail(60)
+    lst2.insert_at_tail(45)
+
+    lst = lst.intersection(lst2)
+    assert str(lst) == "20 -> 60 -> None"

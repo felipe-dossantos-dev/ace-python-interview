@@ -1,3 +1,6 @@
+from typing import AsyncContextManager
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -133,3 +136,100 @@ class LinkedList:
         for _ in range(mid - 1):
             curr = curr.next_element
         return curr
+
+    def find_mid_one_pass(self):
+        if self.is_empty():
+            return -1
+        current_node = self.get_head()
+        if current_node.next_element == None:
+            # Only 1 element exist in array so return its value.
+            return current_node.data
+
+        mid_node = current_node
+        current_node = current_node.next_element.next_element
+        # Move mid_node (Slower) one step at a time
+        # Move current_node (Faster) two steps at a time
+        # When current_node reaches at end, mid_node will be at the middle of List
+        while current_node:
+            mid_node = mid_node.next_element
+            current_node = current_node.next_element
+            if current_node:
+                current_node = current_node.next_element
+        if mid_node:
+            return mid_node.data
+        return -1
+
+    # time O(n) on average, O(n^2) on worst case
+    # space O(n) for the set
+    def remove_duplicates(self):
+        nodes_passed = set()
+        previous = self.get_head()
+        curr = self.get_head()
+
+        while curr:
+            if curr.data in nodes_passed:
+                previous.next_element = curr.next_element
+            else:
+                nodes_passed.add(curr.data)
+                previous = curr
+            curr = curr.next_element
+
+    # time O(n^2)
+    def remove_duplicates_theirs(self):
+        if self.is_empty():
+            return None
+
+        if self.get_head().next_element is None:
+            return self
+
+        outer_node = self.get_head()
+        while outer_node:
+            inner_node = outer_node  # Iterator for the inner loop
+            while inner_node:
+                if inner_node.next_element:
+                    if outer_node.data == inner_node.next_element.data:
+                        # Duplicate found, so now removing it
+                        new_next_element = inner_node.next_element.next_element
+                        inner_node.next_element = new_next_element
+                    else:
+                        # Otherwise simply iterate ahead
+                        inner_node = inner_node.next_element
+                else:
+                    # Otherwise simply iterate ahead
+                    inner_node = inner_node.next_element
+            outer_node = outer_node.next_element
+
+        return self
+
+    # TODO - create new list
+    # time - O((m + n)^2) worst case because of remove_duplicates worst case
+    # time - O(m + n) average case
+    # space - O(1)
+    def union(self, another_list):
+        another_curr = another_list.get_head()
+        curr = self.get_head()
+        last = None
+        while curr:
+            last = curr
+            curr = curr.next_element
+        last.next_element = another_curr
+        self.remove_duplicates()
+        return self
+
+    # time - O((m + n)^2) worst case
+    # time - O(m + n) average case
+    # space - O(m + n)
+    def intersection(self, another_list):
+        another_curr = another_list.get_head()
+        curr = self.get_head()
+        new_list = LinkedList()
+        nodes_passed = set()
+
+        while another_curr:
+            nodes_passed.add(another_curr.data)
+            another_curr = another_curr.next_element
+        while curr:
+            if curr.data in nodes_passed:
+                new_list.insert_at_tail(curr.data)
+            curr = curr.next_element
+        return new_list
