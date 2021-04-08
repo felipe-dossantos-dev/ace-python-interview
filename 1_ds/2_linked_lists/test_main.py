@@ -240,3 +240,25 @@ def test_intersection():
 
     lst = lst.intersection(lst2)
     assert str(lst) == "20 -> 60 -> None"
+
+
+def test_find_nth():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+
+    assert lst.find_nth(2) == 10
+
+    lst = LinkedList()
+    lst.insert_at_tail(15)
+    lst.insert_at_tail(22)
+    lst.insert_at_tail(8)
+    lst.insert_at_tail(7)
+    lst.insert_at_tail(14)
+    lst.insert_at_tail(21)
+    assert lst.find_nth(4) == 8
+    assert lst.find_nth(5) == 22
+    assert lst.find_nth(8) == -1
+    assert lst.find_nth(2) == 14

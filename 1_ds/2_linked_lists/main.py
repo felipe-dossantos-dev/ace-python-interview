@@ -233,3 +233,36 @@ class LinkedList:
                 new_list.insert_at_tail(curr.data)
             curr = curr.next_element
         return new_list
+
+    # space O(2*n) -> O(n)
+    def find_nth(self, n):
+        if self.is_empty():
+            return -1
+        leng = self.length() - n
+        if leng <= 0:
+            return -1
+        cur = self.get_head()
+        for i in range(leng):
+            cur = cur.next_element
+        return cur.data
+
+    # space O(n)
+    def find_nth_two_pointers(self, n):
+        if self.is_empty():
+            return -1
+
+        nth_node = self.get_head()  # This iterator will reach the Nth node
+        end_node = self.get_head()  # This iterator will reach the end of the list
+
+        count = 0
+        while count < n:
+            if end_node is None:
+                return -1
+            end_node = end_node.next_element
+            count += 1
+
+        while end_node is not None:
+            end_node = end_node.next_element
+            nth_node = nth_node.next_element
+
+        return nth_node.data
