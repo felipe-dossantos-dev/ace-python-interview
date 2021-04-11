@@ -262,3 +262,34 @@ def test_find_nth():
     assert lst.find_nth(5) == 22
     assert lst.find_nth(8) == -1
     assert lst.find_nth(2) == 14
+
+
+def test_reverse_every_k_elements():
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+    lst.reverse_every_k_elements(4)
+    assert str(lst) == "4 -> 10 -> 90 -> 5 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(5)
+    lst.insert_at_tail(90)
+    lst.insert_at_tail(10)
+    lst.insert_at_tail(4)
+    lst.reverse_every_k_elements(2)
+    assert str(lst) == "90 -> 5 -> 4 -> 10 -> None"
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(1)
+    lst2.insert_at_tail(2)
+    lst2.insert_at_tail(3)
+    lst2.insert_at_tail(4)
+    lst2.insert_at_tail(5)
+    lst2.insert_at_tail(6)
+    lst2.insert_at_tail(7)
+    lst2.insert_at_tail(8)
+    lst2.insert_at_tail(9)
+    lst2.reverse_every_k_elements(3)
+    assert str(lst2) == "3 -> 2 -> 1 -> 6 -> 5 -> 4 -> 9 -> 8 -> 7 -> None"

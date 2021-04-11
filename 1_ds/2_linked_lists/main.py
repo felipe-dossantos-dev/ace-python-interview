@@ -266,3 +266,33 @@ class LinkedList:
             nth_node = nth_node.next_element
 
         return nth_node.data
+
+    def reverse_every_k_elements(self, k):
+        if k < 2:
+            return
+
+        current, previous = self.get_head(), None
+        while True:
+
+            last_node_previous_list = previous
+            last_node_current_list = current
+
+            next_node = None
+            i = 0
+            while current is not None and i < k:
+                next_node = current.next_element
+                current.next_element = previous
+                previous = current
+                current = next_node
+                i += 1
+
+            if last_node_previous_list is not None:
+                last_node_previous_list.next_element = previous
+            else:
+                self.head_node = previous
+
+            last_node_current_list.next_element = current
+
+            if current is None:
+                break
+            previous = last_node_current_list
