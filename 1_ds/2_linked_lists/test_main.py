@@ -293,3 +293,41 @@ def test_reverse_every_k_elements():
     lst2.insert_at_tail(9)
     lst2.reverse_every_k_elements(3)
     assert str(lst2) == "3 -> 2 -> 1 -> 6 -> 5 -> 4 -> 9 -> 8 -> 7 -> None"
+
+
+def test_rotate():
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(5)
+    lst.rotate(2)
+    assert str(lst) == "4 -> 5 -> 1 -> 2 -> 3 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(5)
+    lst.rotate(7)
+    assert str(lst) == "4 -> 5 -> 1 -> 2 -> 3 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(5)
+    lst.rotate(1)
+    assert str(lst) == "5 -> 1 -> 2 -> 3 -> 4 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(5)
+    lst.rotate(0)
+    assert str(lst) == "1 -> 2 -> 3 -> 4 -> 5 -> None"

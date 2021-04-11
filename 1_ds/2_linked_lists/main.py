@@ -296,3 +296,32 @@ class LinkedList:
             if current is None:
                 break
             previous = last_node_current_list
+
+    # time O(2n) -> O(n)
+    # space O(1)
+    def rotate(self, k):
+        if k == 0:
+            return
+
+        leng = self.length()
+        rotate = leng - abs(k % leng)
+        if rotate == 0:
+            return
+
+        node = self.get_head()
+        previous = None
+        while rotate:
+            previous = node
+            node = node.next_element
+            rotate -= 1
+
+        last_head = self.get_head()
+        self.head_node = node
+        previous.next_element = None
+
+        # ok
+        last = None
+        while node:
+            last = node
+            node = node.next_element
+        last.next_element = last_head
