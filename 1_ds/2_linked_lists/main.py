@@ -325,3 +325,41 @@ class LinkedList:
             last = node
             node = node.next_element
         last.next_element = last_head
+
+    def add_integer(self, another_list):
+        lst = LinkedList()
+        cur_head = self.get_head()
+        another_head = another_list.get_head()
+        upper = 0
+        while cur_head and another_head:
+            actual = cur_head.data + another_head.data + upper
+            upper = 0
+            if actual >= 10:
+                actual -= 10
+                upper = 1
+            lst.insert_at_tail(actual)
+            cur_head = cur_head.next_element
+            another_head = another_head.next_element
+
+        while cur_head:
+            actual = cur_head.data + upper
+            upper = 0
+            if actual >= 10:
+                actual -= 10
+                upper = 1
+            lst.insert_at_tail(actual)
+            cur_head = cur_head.next_element
+
+        while another_head:
+            actual = another_head.data + upper
+            upper = 0
+            if actual >= 10:
+                actual -= 10
+                upper = 1
+            lst.insert_at_tail(actual)
+            another_head = another_head.next_element
+
+        if upper > 0:
+            lst.insert_at_tail(upper)
+
+        return lst

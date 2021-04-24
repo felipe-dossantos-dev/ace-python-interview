@@ -331,3 +331,33 @@ def test_rotate():
     lst.insert_at_tail(5)
     lst.rotate(0)
     assert str(lst) == "1 -> 2 -> 3 -> 4 -> 5 -> None"
+
+
+def test_add_integer():
+    lst = LinkedList()
+    lst.insert_at_tail(1)
+    lst.insert_at_tail(0)
+    lst.insert_at_tail(9)
+    lst.insert_at_tail(9)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(7)
+    lst2.insert_at_tail(3)
+    lst2.insert_at_tail(2)
+
+    lst3 = lst.add_integer(lst2)
+    assert str(lst3) == "8 -> 3 -> 1 -> 0 -> 1 -> None"
+
+    lst = LinkedList()
+    lst.insert_at_tail(4)
+    lst.insert_at_tail(3)
+    lst.insert_at_tail(2)
+    lst.insert_at_tail(1)
+
+    lst2 = LinkedList()
+    lst2.insert_at_tail(5)
+    lst2.insert_at_tail(6)
+    lst2.insert_at_tail(7)
+
+    lst3 = lst.add_integer(lst2)
+    assert str(lst3) == "9 -> 9 -> 9 -> 1 -> None"
