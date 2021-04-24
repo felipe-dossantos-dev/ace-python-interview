@@ -327,39 +327,36 @@ class LinkedList:
         last.next_element = last_head
 
     def add_integer(self, another_list):
+        """
+        Description: Given the head pointers of two linked lists where each linked list represents an integer number (each node is a digit),
+        add them and return the resulting linked list. Here, the first node in a list represents the least significant digit.
+        Solution:
+            space O(n)
+            time O(n)
+        In some cases, the interviewer might ask that digits in the linked list are stored from left to right, i.e., the most significant digit comes first. We have two options in this case:
+          - Reverse the input linked lists and apply the above algorithm.
+          - If we have circular doubly linked lists, we can simply run the above algorithm from tail to head and keep adding the resulting digit at the head of the result linked list.
+        Follow-up questions
+        How would we multiply two large numbers?
+        How would we divide two large integers?
+        What if the numbers are not in base 10, for instance, base 2, 5, or 8?
+        """
         lst = LinkedList()
         cur_head = self.get_head()
         another_head = another_list.get_head()
         upper = 0
-        while cur_head and another_head:
-            actual = cur_head.data + another_head.data + upper
-            upper = 0
-            if actual >= 10:
-                actual -= 10
-                upper = 1
-            lst.insert_at_tail(actual)
-            cur_head = cur_head.next_element
-            another_head = another_head.next_element
+        while cur_head or another_head or upper > 0:
+            cur_head_value = cur_head.data if cur_head else 0
+            another_head_value = another_head.data if another_head else 0
 
-        while cur_head:
-            actual = cur_head.data + upper
-            upper = 0
-            if actual >= 10:
-                actual -= 10
-                upper = 1
-            lst.insert_at_tail(actual)
-            cur_head = cur_head.next_element
+            actual = cur_head_value + another_head_value + upper
+            upper = actual // 10
+            actual = actual % 10
 
-        while another_head:
-            actual = another_head.data + upper
-            upper = 0
-            if actual >= 10:
-                actual -= 10
-                upper = 1
             lst.insert_at_tail(actual)
-            another_head = another_head.next_element
-
-        if upper > 0:
-            lst.insert_at_tail(upper)
+            if cur_head:
+                cur_head = cur_head.next_element
+            if another_head:
+                another_head = another_head.next_element
 
         return lst
