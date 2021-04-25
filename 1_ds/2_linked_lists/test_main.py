@@ -1,4 +1,4 @@
-from main import LinkedList
+from main import LinkedList, Node
 
 
 def test_insert_at_tail():
@@ -361,3 +361,29 @@ def test_add_integer():
 
     lst3 = lst.add_integer(lst2)
     assert str(lst3) == "9 -> 9 -> 9 -> 1 -> None"
+
+
+def test_deep_copy_arbitrary_pointer():
+    lst = LinkedList()
+
+    node_1 = Node(7)
+    node_2 = Node(14)
+    node_3 = Node(21)
+
+    # wiring
+    node_1.next_element = node_2
+    node_2.next_element = node_3
+
+    # arbitrary wiring
+    node_1.arbitrary_pointer = node_3
+    node_3.arbitrary_pointer = node_1
+
+    # setup list
+    lst.head_node = node_1
+    assert str(lst) == "7 -> 14 -> 21 -> None"
+
+    lst = lst.deep_copy_arbitrary_pointer()
+    assert str(lst) == "7 -> 14 -> 21 -> None"
+    assert lst.get_head().arbitrary_pointer.data == 21
+    assert lst.get_head().next_element.arbitrary_pointer == None
+    assert lst.get_head().next_element.next_element.arbitrary_pointer.data == 7

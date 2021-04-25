@@ -5,6 +5,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next_element = None
+        self.arbitrary_pointer = None
 
 
 class LinkedList:
@@ -15,20 +16,18 @@ class LinkedList:
         return self.head_node
 
     def is_empty(self):
-        if self.head_node is None:  # Check whether the head is None
-            return True
-        else:
-            return False
+        return self.head_node is None  # Check whether the head is None
 
     def insert_at_tail(self, value):
         new_node = Node(value)
         if self.is_empty():
             self.head_node = new_node
-            return
+            return new_node
         temp = self.get_head()
         while temp.next_element is not None:
             temp = temp.next_element
         temp.next_element = new_node
+        return new_node
 
     # Supplementary print function
     def __repr__(self):
@@ -358,5 +357,32 @@ class LinkedList:
                 cur_head = cur_head.next_element
             if another_head:
                 another_head = another_head.next_element
+
+        return lst
+
+    def deep_copy_arbitrary_pointer(self):
+        """
+        We are given a linked list where the node has two pointers.
+        The first is the regular next pointer.
+        The second pointer is called arbitrary_pointer and it can point to any node in the linked list.
+        Your job is to write code to make a deep copy of the given linked list.
+        Here, deep copy means that any operations on the original list (inserting, modifying and removing) should not affect the copied list.
+        """
+        lst = LinkedList()
+        mapping = {}
+
+        cur_head = self.get_head()
+        while cur_head:
+            node = lst.insert_at_tail(cur_head.data)
+            mapping[cur_head] = node
+            cur_head = cur_head.next_element
+
+        cur_head = self.get_head()
+        while cur_head:
+            node = mapping[cur_head]
+            if node and cur_head.arbitrary_pointer:
+                arb_node = mapping[cur_head.arbitrary_pointer]
+                node.arbitrary_pointer = arb_node
+            cur_head = cur_head.next_element
 
         return lst
